@@ -1,8 +1,27 @@
 {% extends "base.html" %}
-{% block title %}{{ post.title }}{% endblock %}{% block content %}
-<h1>{{ post.title }}</h1>
-<p class="date">
-Published {{ post.publish }} by {{ post.author }}
-</p>
-{{ post.body|linebreaks }}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <article class="blog-post px-3 py-5 p-md-5">
+                    <div class="container">
+                        <header class="blog-post-header">
+                            <h2 class="title mb-2">{{ post.title }}</h2>
+                            <div class="meta mb-3"><span class="date">{{ post.publish }}</span><span class="time">5 min read</span><span class="comment"><a href="#">4 comments</a></span></div>
+                        </header>
+                        <div class="blog-post-body">
+                            <figure class="blog-banner">
+                                {% if post.image %}
+                                    <a href="https://made4dev.com"><img class="img-fluid" src="{{ post.image.url }}"></a>
+                                {% endif %}
+                            </figure>
+                            {{ post.body }}
+                        <pre> <code> function $initHighlight(block, cls) { try { if (cls.search(/\bno\-highlight\b/) != -1) return process(block, true, 0x0F) + ` class="${cls}"`; } catch (e) { /* handle exception */ } for (var i = 0 / 2; i < classes.length; i++) { if (checkCondition(classes[i]) === undefined) console.log('undefined'); } } export $initHighlight; </code> </pre>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
 {% endblock %}
