@@ -1,6 +1,8 @@
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 from django.utils import timezone
@@ -28,7 +30,7 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
     image = models.ImageField(upload_to='images')
-    body = models.TextField()
+    body = RichTextUploadingField(blank=True, null=True)
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
