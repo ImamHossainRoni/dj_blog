@@ -1,134 +1,67 @@
-<!DOCTYPE html>
-<html lang="en"> 
-<head>
-	<title>Bootstrap 4 Blog Template For Developers</title>
+{% extends 'base.html' %}
+{% load static %}
 
-	<!-- Meta -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Blog Template">
-	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
-	<link rel="shortcut icon" href="favicon.ico"> 
+{% block content %}
+    <div class="main-wrapper">
+	    <section class="cta-section theme-bg-light py-5">
+		    <div class="container text-center">
+			    <h2 class="heading">প্রযুক্তির খেঁয়া </h2>
+			    <div class="intro">Sometimes abstract & sometimes stupid thoughts &#128512;</div>
 
-	<!-- FontAwesome JS-->
-	<script type="text/javascript" src="assets/plugins/js/fontawesome.js"></script>
-
-	<!-- Theme CSS -->  
-	<link id="theme-style" rel="stylesheet" href="assets/css/main.css">
-
-</head> 
-
-<body>
-
-	<header class="headersectiond" id="fixed_nav">
-		<div  class="container-justify ">
-			<nav  class=" navbar  navbar-expand-lg navbar-fixed-top  navbar-light  navcontainer2 " style="background-color: #e3f2fd;">
-				<a class="navbar-brand" href="#">প্রযুক্তির কালের খেয়া</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active">
-							<a class=" nav-link" href="index.html"> Home <span class="sr-only">(current)</span></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link   
-							" href="list.html">  Archive</a>
-						</li>
-						
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Categories</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Security</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Delete Account</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Log Out</a>
-							</div>
-							<li class="nav-item">
-							<a class="nav-link 
-							" href="contact.html"> Contact</a>
-						</li>
-						</li>
-
-					</ul>
-					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-					</form>
-				</div>
-			</nav>
-		</div>
-
-	</header>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-
-				<section class="blog-list px-3 py-5 p-md-5">
-					<div class="container">
-						<div class="item mb-5">
-							<div class="media">
-								<img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="assets/images/blog/blog-post-thumb-3.jpg" alt="image">
-								<div class="media-body">
-									<h3 class="title mb-1"><a href="details.html">High Performance JavaScript</a></h3>
-									<div class="meta mb-1"><span class="date">Published 1 month ago</span><span class="time">8 min read</span><span class="comment"><a href="#">12 comments</a></span></div>
-									<div class="intro">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies...</div>
-									<a class="more-link" href="details.html">Read more &rarr;</a>
-								</div><!--//media-body-->
-							</div><!--//media-->
-						</div><!--//item-->
+		    </div><!--//container-->
+	    </section>
+	    <section class="blog-list px-3 py-5 p-md-5">
+		    <div class="container">
+                {% for post in posts %}
+			    <div class="item mb-5">
+				    <div class="media">
+					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{ post.image.url }}" alt="image">
+					    <div class="media-body">
+						    <h3 class="title mb-1"><a href="{% url 'post_details' post.id %}">{{ post.title }}</a></h3>
+						    <div class="meta mb-1"><span class="date">{{ post.created }}</span><span class="time">5 min read</span><span class="comment"><a href="#">8 comments</a></span></div>
+						    <div class="intro">{{ post.body|safe|truncatechars:200 }}</div>
+						    <a class="more-link" href="blog-post.html">Read more &rarr;</a>
+					    </div>
+				    </div>
+			    </div>
+                {% endfor %}
 
 
-						<div class="item mb-5">
-							<div class="media">
-								<img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="assets/images/blog/blog-post-thumb-5.jpg" alt="image">
-								<div class="media-body">
-									<h3 class="title mb-1"><a href="details.html">Learn React in 24 Hours</a></h3>
-									<div class="meta mb-1"><span class="date">Published 2 months ago</span><span class="time">10 min read</span><span class="comment"><a href="#">23 comments</a></span></div>
-									<div class="intro">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies...</div>
-									<a class="more-link" href="details.html">Read more &rarr;</a>
-								</div><!--//media-body-->
-							</div><!--//media-->
-						</div><!--//item-->
 
-						<div class="item">
-							<div class="media">
-								<img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="assets/images/blog/blog-post-thumb-6.jpg" alt="image">
-								<div class="media-body">
-									<h3 class="title mb-1"><a href="details.html">About Remote Working</a></h3>
-									<div class="meta mb-1"><span class="date">Published 3 months ago</span><span class="time">2 min read</span><span class="comment"><a href="#">1 comment</a></span></div>
-									<div class="intro">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies...</div>
-									<a class="more-link" href="details.html">Read more &rarr;</a>
-								</div><!--//media-body-->
-							</div><!--//media-->
-						</div><!--//item-->
+			   <!--  <nav class="blog-nav nav nav-justified my-5">
+				  <a class="nav-link-prev nav-item nav-link d-none rounded-left" href="#">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+				  <a class="nav-link-next nav-item nav-link rounded" href="#">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+				</nav> -->
 
-						<nav class="blog-nav nav nav-justified my-5">
-							<a class="nav-link-prev nav-item nav-link rounded-left" href="index.html">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-							<a class="nav-link-next nav-item nav-link rounded-right" href="blog-list.html">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
-						</nav>
+				<nav class="blog-nav nav nav-justified my-5" aria-label="Page navigation example">
+			    	<ul class="pagination">
+			    		<li class="page-item">
+			    			<a class="page-link" href="#" aria-label="Previous">
+			    				<span aria-hidden="true">&laquo;</span>
+			    				<span class="sr-only">Previous</span>
+			    			</a>
+			    		</li>
+			    		<li class="page-item"><a class="page-link" href="#">1</a></li>
+			    		<li class="page-item"><a class="page-link" href="#">2</a></li>
+			    		<li class="page-item"><a class="page-link" href="#">3</a></li>
+			    		<li class="page-item">
+			    			<a class="page-link" href="#" aria-label="Next">
+			    				<span aria-hidden="true">&raquo;</span>
+			    				<span class="sr-only">Next</span>
+			    			</a>
+			    		</li>
+			    	</ul>
+			    </nav>
 
+		    </div>
+	    </section>
 
-					</section>
-				</div>
+	    <footer class="footer text-center py-2 theme-bg-dark">
 
-			</div>
-		</div>
-		<footer class="footer text-center py-2 theme-bg-dark">
+	        <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+            <small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
 
-			<small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+	    </footer>
 
-		</footer>
-		<!-- Javascript -->          
-		<script src="assets/plugins/jquery-3.3.1.min.js"></script>
-		<script src="assets/plugins/popper.min.js"></script> 
-		<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
-
-	</body>
-	</html> 
-
+    </div><!--//main-wrapper-->
+{% endblock %}
