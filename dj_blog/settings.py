@@ -14,7 +14,7 @@ SECRET_KEY = ')i8oa87%57h66))9aoh-iy=!+khlx#dsl9s*mq@&gitysku((6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
